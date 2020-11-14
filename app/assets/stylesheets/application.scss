@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// 管理者・カスタマー共通のCSS
+// headerのCSS
+span{
+  background-color:#ededed;
+  text-align: left;
+}
+
+.text1 {
+  text-align: left;
+  margin-left: 25%;
+}
+
+.sign-btn {
+  background-color: #3d8bcd;
+  width: 131px;
+  height: 35px;
+  color: white;
+}
