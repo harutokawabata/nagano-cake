@@ -8,7 +8,59 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header><p>develop</p></header>
+
+  <header>
+      <div class="page-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <p>logo</p>
+            </div>
+              <div class="col-xs-8">
+                <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+                  <!--ここからECの時の表示-->
+                  <% if user_signed_in? %>
+                    <li class="">
+                      <%#link_to 'Home', user_path(current_user.id), class: "glyphicon glyphicon-home"  %>
+                      マイページ
+                    </li>
+                    <li class="">
+                      <%# link_to 'Users', users_path, class: "glyphicon glyphicon-user" %>
+                      商品一覧
+                    </li>
+                    <li class="">
+                      <%# link_to 'Books', books_path, class: "glyphicon glyphicon-book" %>
+                      カート
+                    </li>
+                    <li class="">
+                      <%# link_to "logout", destroy_user_session_path, class: "glyphicon glyphicon-log-out", method: :delete %>
+                      ログアウト
+                    </li>
+                  <% else %>
+                    <li class="">
+                      <%# link_to "Home", root_path, class: "glyphicon glyphicon-home" %>
+                      About
+                    </li>
+                    <li class="">
+                      <%# link_to "About", home_about_path, class: "glyphicon glyphicon-link" %>
+                      商品一覧
+                    </li>
+                    <li class="">
+                      <%# link_to "Sign up", new_user_registration_path, class: "glyphicon glyphicon-edit" %>
+                      新規登録
+                    </li>
+                    <li class="">
+                      <%# link_to "login", new_user_session_path, class: "glyphicon glyphicon-log-in" %>
+                      ログイン
+                    </li>
+                  <% end %>
+                </ul>
+                <!--ECの時の表示-->
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
   <body>
     <%= yield %>
   </body>
