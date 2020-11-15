@@ -3,6 +3,21 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up,keys: [:last_name, :first_name])
+    devise_parameter_sanitizer.permit(:sign_up,keys: [:last_name, :first_name, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted])
+  end
+
+  def after_sign_out_path_for(resource)
+    new_customer_session_path
   end
 end
+
+    # t.string "last_name"
+    # t.string "first_name"
+    # t.string "last_name_kana"
+    # t.string "first_name_kana"
+    # t.string "postal_code"
+    # t.string "address"
+    # t.string "telephone_number"
+    # t.boolean "is_deleted"
+
+    # :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted

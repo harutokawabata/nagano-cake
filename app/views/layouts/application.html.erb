@@ -19,7 +19,10 @@
               <div class="col-xs-8">
                 <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
                   <!--ここからECの時の表示-->
-                  <% if user_signed_in? %>
+                  <% if customer_signed_in? %>
+                    <li>
+                      <%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %>
+                    </li>
                     <li class="">
                       <%#link_to 'Home', user_path(current_user.id), class: "glyphicon glyphicon-home"  %>
                       マイページ
