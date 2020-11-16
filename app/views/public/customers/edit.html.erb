@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="text2">
+    <h2><span>登録情報編集</span></h2>
+  <div>
+  <div class="row">
+    <div class="col-m-12">
+    <%= form_with model:@customer, local:true do |f| %>
+      <div class="form-group has-icon">
+        <label class="control-label sr-only" for="inputEmail">Name</label>
+        <%= f.text_field :last_name, autofocus: true, class:"form-control", id:"inputEmail,"placeholder:"名前" %>
+        <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+      </div>
+    <% end %>
+        <div class="text2">
+          <h2><span>既に登録がお済みの方</span></h2>
+          <%= link_to 'こちら', customer_session_path, method: :get %><p>からログインしてください</p>
+        </div>
+  </div>
+</div>
+<!--ここから-->
+
+<!--container直下にcol.row数値指定でデザインを整えたらできそう-->
