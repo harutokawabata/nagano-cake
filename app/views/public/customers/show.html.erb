@@ -8,13 +8,13 @@
     </div>
     <div class="col-mg-3">
       <button type="button" id="sampleButtonSingleToggle" class="btn btn-primary" data-toggle="button" autocomplete="off">
-      	編集する
+      	 <%= link_to '編集する', customer_path(@customer) %>
       </button>
     </div>
     <br>
     <div class="col-mg-3">
       <button type="button" id="sampleButtonSingleToggle" class="btn btn-primary" data-toggle="button" autocomplete="off">
-      	パスワードを変更する
+      	<%= link_to 'パスワードを設定する', customer_path(@customer) %>
       </button>
     </div>
   </div>
@@ -25,28 +25,28 @@
     		<tr>
     			<th>氏名</th>
     			<td>
-    			  <%= @customer.last_name %>
+    			  <%= @customer.first_name %><%= @customer.last_name %>
     			</td>
     		</tr>
     		<tr>
-    			<th> カナ</th>
-    			<td>frstnama</td>
+    			<th>カナ</th>
+    			<td><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
     		</tr>
     		<tr>
     			<th>郵便番号</th>
-    			<td>frstnamae</td>
+    			<td><%= @customer.postal_code %></td>
     		</tr>
     		<tr>
     			<th>住所</th>
-    			<td>frstnamae</td>
+    			<td><%= @customer.address %></td>
     		</tr>
     		<tr>
     			<th>電話番号</th>
-    			<td>frstnamae</td>
+    			<td><%= @customer.telephone_number %></td>
     		</tr>
     		<tr>
     			<th>メールアドレス</th>
-    			<td>frstnamae</td>
+    			<td><%= @customer.email %></td>
     		</tr>
     	</tbody>
     </table>
