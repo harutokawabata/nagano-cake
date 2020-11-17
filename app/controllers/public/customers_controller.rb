@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   def show
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
   end
 
   def edit
@@ -8,6 +8,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+      @customer = Customer.find(params[:id])
+      if @customer.update(customer_params)
+        redirect_to customer_path(@customer.id), notice: 'successfully'
+      else
+        render action: :edit
+      end
   end
 
   def unsubscribe
