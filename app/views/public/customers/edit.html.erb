@@ -1,0 +1,96 @@
+<%= form_for(@customer,url:update_customer_path(@customer)) do |f| %>
+<div class="container">
+  <h2>登録情報編集</h2>
+  <div class="row">
+    <div class="col-xs-2">
+      <p>名前</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.label :"  （姓）  " %>
+        <%= f.text_field :first_name, autofocus: true %>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.label :"（名）" %>
+        <%= f.text_field :last_name, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <p>フリガナ</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.label :"（セイ）" %>
+        <%= f.text_field :first_name_kana, autofocus: true %>
+      </div>
+    </div>
+    <div class="col-xs-1">
+      <p>（メイ）</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :last_name_kana, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3">
+      <p>メールアドレス</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3">
+      <p>郵便番号（ハイフンなし）</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :postal_code, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3">
+      <p>住所</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :address, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3">
+      <p>電話番号</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :telephone_number, autofocus: true %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+     <div class="actions">
+      <%= f.submit "Update" %>
+     </div>
+    </div>
+  <% end %>
+    <div class="col-xs-6">
+      <p><%= button_to "退会する", registration_path(@customer), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    </div>
+  </div>
+</div>
