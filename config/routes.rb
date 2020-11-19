@@ -9,10 +9,11 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
-  devise_for :admins, controllers: {
-    sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
-    registrations: 'admins/registrations'
+# コントローラ〜削除時にエラ〜の場合は否の文を消す
+  devise_for :admin, controllers: {
+    sessions: 'admin/sessions',
+    passwords: 'admin/passwords',
+    registrations: 'admin/registrations'
   }
 
   scope module: :public do
@@ -25,8 +26,9 @@ Rails.application.routes.draw do
 
   #homesコントローラーを利用してルートパス を設置
   get '/' => 'public/homes#top'
+  get '/admin' => 'admin/homes#top'
   get '/about' => 'public/homes#about'
 
-  get '/customers/my_page' => 'public/customers#show', as: 'customers'
+  get '/customers/my_page' => 'publics/customers#show', as: 'customers'
 
 end
