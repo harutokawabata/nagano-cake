@@ -19,8 +19,12 @@ Rails.application.routes.draw do
   scope module: :public do
     # get '/customers/:id/edit' => 'customers#edit', as: 'edit_customer'
     resources :customers, only: [:edit, :show, :unsubscrib, :withdraw]
-    # :unsubscrib, :withdrawはresourcesでは働かないので20行目のように記載する必要がある
+    # :unsubscrib, :withdrawはresourcesでは働かないので21行目のように記載する必要がある
     # resourcesではなくresourceを使うとURL直打ちでアクセスできないようになるがfind(params[:id])でピックアップできなくなる
+  end
+
+  namespace :admin do
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
