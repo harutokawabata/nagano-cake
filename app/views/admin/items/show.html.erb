@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <h2><span>商品詳細</span></h2>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <p>写真表示</p>
+    </div>
+    <div class="col-xs-5">
+      <label>商品名</label>
+      <%# @item.name %>
+      <label>商品説明</label>
+      <%# @item.introduction %>
+      <label>ジャンル</label>
+      <%# @genre.name %>
+      <label>税込価格（税抜き価格）</label>
+      <%# @item.price %>
+      <label>販売ステータス</label>
+      <%# if @item.is_active == true %>
+        <!--<p>販売中</p>-->
+      <%# else %>
+        <!--<p>うってねーよ</p>-->
+      <%# end %>
+    </div>
+  </div>
+</div>

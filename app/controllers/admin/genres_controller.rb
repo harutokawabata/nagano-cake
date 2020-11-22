@@ -19,7 +19,7 @@ class Admin::GenresController < ApplicationController
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      redirect_to :index
+      redirect_to admin_genres_path
     else
       flash[:natice] = 'error'
     end
@@ -27,6 +27,6 @@ class Admin::GenresController < ApplicationController
 
   private
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genre).permit(:name, :is_active)
   end
 end

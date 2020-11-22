@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <h2><span>商品新規登録</span></h2>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="image">
+
+      </div>
+      <div class="">
+        <p>ファイルを洗濯</p>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <%= form_with url:admin_items_path, method: :post, model:@item, local:true do |f| %>
+        <%= f.attachment_field :image %><br>
+        <label>商品名</label>
+        <%= f.text_field :name, autofocus: true %><br>
+        <label>商品説明</label>
+        <%= f.text_area :introduction, autofocus: true %><br>
+        <label>ジャンル</label>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %><br>
+        <%# f.collection_select :保存先のカラム名(itemモデル）, これ以降genreモデルのデータ→テーブル（モデル）名.all, :実際にDBに保存させるカラム名(id), :選択肢に用いるカラム名(name), include_blank: "選択して下さい" %>
+        <label>税抜価格</label>
+        <%= f.text_field :price, autofocus: true %><br>
+        <label>販売ステータス</label>
+        <%= f.select :is_active, [["有効", "true"], ["無効", "false"]], include_blank: "選択してください" %>
+        <%= f.submit "新規登録" %>
+      <% end %>
+    </div>
+  </div>
+</div>
