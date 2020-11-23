@@ -14,15 +14,23 @@
     		</tr>
     	</thead>
     	<tbody>
-    	  <%# @items.each do |item| %>
+    	  <% @items.each do |item| %>
     		<tr>
-    			<th><%# item.id %></th>
-    			<td><%# item.name %></td>
-    			<td><%# item.price %></td>
-    			<td><%# genre.name %></td>
-    			<td><%# item.is_active %></td>
+    			<th><%= item.id %></th>
+    			<td><%= item.name %></td>
+    			<td><%= item.price %></td>
+    			<td>
+    			  <%= item.genre.name %>
+    			</td>
+    			<td>
+    			  <% if item.is_active == true %>
+    			    <p>販売中</p>
+    			  <% else %>
+    			    <p>販売中止中</p>
+    			  <% end %>
+    			  </td>
     		</tr>
-    		<%# end %>
+    		<% end %>
     	</tbody>
     </table>
   </div>
