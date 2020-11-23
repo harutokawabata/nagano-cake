@@ -1,0 +1,108 @@
+<%= form_for(@customer,url:update_customer_path(@customer)) do |f| %>
+<div class="container">
+  <h2>登録情報編集</h2>
+  <div class="row">
+    <div class="col-xs-2">
+      <p>会員ID</p>
+    </div>
+    <div class="col-xs-3">
+      <%= @customer.id %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <p>氏名</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :first_name, autofocus: true %>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :last_name, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <p>フリガナ</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :first_name_kana, autofocus: true %>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :last_name_kana, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <p>郵便番号</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :postal_code, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <p>住所</p>
+    </div>
+    <div class="col-xs-6">
+      <div class="field">
+        <%= f.text_field :address, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <p>電話番号</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.text_field :telephone_number, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <p>メールアドレス</p>
+    </div>
+    <div class="col-xs-3">
+      <div class="field">
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <p>会員ステータス</p>
+    </div>
+    <div class="col-xs-3">
+      <%= f.radio_button :is_deleted, :true %>
+      <%= f.label :is_deleted, "有効", {value: :true, style: "display: inline-block;"} %>
+      <%= f.radio_button :is_deleted, :false %>
+      <%= f.label :is_deleted, "退会済み", {value: :false, style: "display: inline-block;"} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+     <div class="actions">
+      <%= f.submit "変更を保存する" %>
+     </div>
+    </div>
+  </div>
+</div>
+<% end %>
