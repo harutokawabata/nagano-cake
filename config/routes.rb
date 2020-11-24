@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     # get '/customers/:id/edit' => 'customers#edit', as: 'edit_customer'
     resources :customers, only: [:edit, :show, :unsubscrib, :withdraw, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :items, only: [:index, :show]
     # :unsubscrib, :withdrawはresourcesでは働かないので21行目のように記載する必要がある
     # resourcesではなくresourceを使うとURL直打ちでアクセスできないようになるがfind(params[:id])でピックアップできなくなる
   end

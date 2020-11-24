@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <table class="table table-bordered">
+      	<thead>
+      		<tr>
+      			<th>ジャンル検索</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      		  <% @genres.each do |genre| %>
+      		  <tr>
+      			  <td><%= genre.name %></td>
+      			</tr>
+      			<% end %>
+      	</tbody>
+      </table>
+    </div>
+    <div class="col-md-9">
+      <h3>商品一覧</h3>
+      <p>全<%= @items.count %>件</p>
+      <div class="container-box">
+        <% @items.each do |item| %>
+          <div class="item-box">
+            <%# link_to attachment_image_tag(@book.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" ), user_path(@book.user) %>
+            <%= link_to(item_path(item)) do %>
+            <%= attachment_image_tag item, :image, format: 'jpeg', size: "160x90" %>
+            <% end %>
+            <br>
+            <p>商品名</p>
+            <%= number_to_currency(item.price, :unit => "￥") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
+
+
+  <!--<div class="col-md-9">-->
+  <!--    <h3>商品一覧</h3>-->
+      <%# SELECT count(*) AS item_all FROM id %>
+  <!--  <%# @items.each do |item| %>-->
+  <!--    <div class="index-box">-->
+
+  <!--        <p>商品名</p>-->
+  <!--        <%# item.price %>-->
+  <!--    </div>-->
+  <!--  <%# end %>-->

@@ -1,0 +1,27 @@
+// Place all the styles related to the public::items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-box{
+  max-width: 740px;
+
+}
+
+.item-box{
+  display: inline-block;/*inline-blockにします*/
+  margin : 10px;
+  margin-bottom: 30px;
+}
+
+.introduction-box1{
+  width: 390px;
+  margin: 10px;
+}
+
+.introduction-box2{
+  width: 390px;
+  margin: 10px;
+  overflow: scroll;
+  word-wrap: break-all;
+}
+
