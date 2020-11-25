@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:edit, :show, :unsubscrib, :withdraw, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     # :unsubscrib, :withdrawはresourcesでは働かないので21行目のように記載する必要がある
     # resourcesではなくresourceを使うとURL直打ちでアクセスできないようになるがfind(params[:id])でピックアップできなくなる
   end

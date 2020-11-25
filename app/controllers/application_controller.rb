@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
       admin_path
     end
   end
+
 end
 
     # t.string "last_name"
