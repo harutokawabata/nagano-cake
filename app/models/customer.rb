@@ -12,6 +12,12 @@ class Customer < ApplicationRecord
   # validates :postal_code, presence: true
   # validates :address, presence: true
   # validates :telephone_number, presence: true
+
+  has_many :cart_items
+  has_many :addresses
+  # has_many :order
+
+
 end
 
   # :last_name, :first_name, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted
