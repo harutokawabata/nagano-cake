@@ -1,7 +1,8 @@
 <div class="container">
   <h2><span>ショッピングカート</span></h2>
   <div style="text-align:right">
-    <%= link_to "削除する", items_path(@cart_items), method: :delete, class:"btn btn-danger" %>
+    <%= link_to "削除する", cart_items_destroy_all_path, method: :delete, class:"btn btn-danger" %>
+    <!--個別ページではないので【】は不要-->
   </div>
   <div class="row">
     <table class="table table-bordered" style="margin-top:20px;">
@@ -15,6 +16,7 @@
     		</tr>
     	</thead>
     	<tbody>
+    	  <% sum = 0 %>
     	  <%# @cart_items.each do |cart_item| %>
     	  <% @cart_items.each do |cart_item| %>
     		<tr>
@@ -32,13 +34,13 @@
     			</td>
     			<td>
     			  <%= cart_item.item.price * cart_item.amount %>
+    			  <% sum += cart_item.item.price * cart_item.amount %>
     			</td>
     			<td>
     			  <div style="text-align: rignt;">
     			   <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %>
     			  </div>
     			 </td>
-    			 <td>
     		</tr>
     		<% end %>
     	</tbody>
@@ -54,7 +56,7 @@
         	<thead>
         		<tr>
         			<th>合計金額</th>
-        			<th></th>
+        			<th> <%= sum %></th>
         		</tr>
         	</thead>
         </table>
