@@ -21,9 +21,15 @@ Rails.application.routes.draw do
     resources :customers, only: [:edit, :show, :unsubscrib, :withdraw, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
+    #ここからcart_items
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
-    resources :orders, only: [:new, :comfilm, :complete, :create, :index, :show]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    # ここまでcart_items
+    # ここからorders
+    post '/orders/confirm' => 'orders#confirm'
+    get '/orders/complete' => 'orders#complete'
+    resources :orders, only: [:new, :complete, :create, :index, :show]
+    # ここまでorders
     # :unsubscrib, :withdrawはresourcesでは働かないので21行目のように記載する必要がある
     # resourcesではなくresourceを使うとURL直打ちでアクセスできないようになるがfind(params[:id])でピックアップできなくなる
   end

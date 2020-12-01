@@ -1,0 +1,63 @@
+<div class="container">
+  <h2><span>注文情報入力</span></h2>
+  <% customer_info1 = current_customer.postal_code + current_customer.address %>
+  <% customer_info2 = current_customer.first_name + current_customer.last_name %>
+  <%# @customers.each do |customer| %>
+    <%# customer.address %>
+  <%# end %>
+  <% @orders = @order.address %>
+  <%# f.select :address, {'男性': true, '女性' : false}, {include_blank: '洗濯しろや'} %>
+
+
+         <%= form_with model:@order, url:orders_confirm_path, local:true do |f| %>
+         <div class="row">
+          <h4>支払い方法</h4>
+           <%= f.radio_button :payment_method, 0 %>
+           <%= f.label :ipayment_method, "クレジットカード", {value: :true, style: "display: inline-block;"} %><br>
+           <%= f.radio_button :payment_method, 1 %>
+           <%= f.label :payment_method, "銀行振り込み", {value: :false, style: "display: inline-block;"} %><br>
+         </div>
+         <div class="row">
+          <h4>お届け先</h4>
+           <%= f.radio_button :address_id, 0 %>
+           <%= f.label :address_id, "ご自身の住所", {value: :true, style: "display: inline-block;"} %><br>
+           <%= customer_info1 %><br>
+           <%= customer_info2 %><br>
+           <%= f.radio_button :address_id, 1 %>
+           <%= f.label :address_id, "登録済み住所から選択", {value: :true, style: "display: inline-block;"} %><br>
+           <%= f.collection_select :has_address, current_customer.addresses, :id, :personal_info %><br>
+           <%# f.collection_select :自分で決めていいパラメーターの名前, オブジェクトの配列（現在登録しているユーザーのデータ）, バリュー属性, テキスト項目（f.collection_selectのｔないようとして表示される内容）%>
+           <%= f.radio_button :address_id, 2 %>
+           <%= f.label :address_id, "新しいお届け先", {value: :false, style: "display: inline-block;"} %><br>
+          </div>
+          <div class="row">
+           <div class="col-xs-2">
+            <%= f.label :postal_code, "郵便番号" %>
+           </div>
+           <div class="col-xs-6">
+            <%= f.text_field :postal_code %>
+           </div>
+          </div>
+          <div class="row">
+           <div class="col-xs-2">
+            <%= f.label :address, "住所" %>
+           </div>
+           <div class="col-xs-6">
+            <%= f.text_field :address %>
+           </div>
+          </div>
+          <div class="row">
+           <div class="col-xs-2">
+            <%= f.label :name, "宛名" %>
+           </div>
+           <div class="col-xs-10">
+            <%= f.text_field :name %>
+           </div>
+          </div>
+          <div class="row" style="text-align:center;">
+           <%= f.submit "確認画面へ進む", class:"btn btn-primary"%>
+          </div>
+        <% end %>
+  </div>
+
+</div>

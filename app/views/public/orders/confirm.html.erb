@@ -1,0 +1,72 @@
+<p>aaa</p>
+<div class="container">
+  <h2><span>注文情報確認</span></h2>
+  <div class="row">
+    <div class="col-xs-8">
+    <table class="table table-bordered">
+    	<thead>
+    		<tr>
+    			<th>商品名</th>
+    			<th>単価（税込）</th>
+    			<th>数量</th>
+    			<th>小計</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    	<!--<%# @items.each do |item| %>-->
+    	<% sum = 0 %>
+    	<% @cart_items.each do |cart_item| %>
+    		<tr>
+    			<td><%= cart_item.item.name %></td>
+    			<td><%= cart_item.item.price %></td>
+    			<td><%= cart_item.amount %></td>
+    			<td>
+    		    <%= cart_item.item.price * cart_item.amount %>
+    		    <% sum += cart_item.item.price * cart_item.amount %>
+    			</td>
+    		</tr>
+    		 	<%# sum = sum + (cart_item.item.price * cart_item.amount) %>
+    	<% end %>
+    	</tbody>
+    </table>
+   </div>
+   <div class="col-xs-4">
+    <table class="table table-bordered">
+      <tr><th>送料</th><td>800円</td></tr>
+      <tr><th>商品合計</th><td><%= sum %></td></tr>
+      <tr><th>請求額</th><td><%# sum + 800  %></td></tr>
+      <!--https://techacademy.jp/magazine/34474-->
+    </table>
+   </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <h3>支払い方法</h3>
+      <%= @order.payment_method %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <h3>お届け先</h3>
+      <%= @order.postal_code %> <%= @order.address %>  <%= @order.name %>
+    </div>
+  </div>
+  <div class="row" style="text-align:center;">
+    <%= form_with model:[@cart_item, @order], url:(orders_path) do |f| %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :postal_code, :value => current_customer.postal_code %>
+      <%= f.hidden_field :address, :value => @order.address %>
+      <%= f.hidden_field :name, :value => @order.name %>
+      <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
+      <%= f.hidden_field :total_payment, :value => @order.total_payment %>
+      <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+      <%= f.hidden_field :status, :value => @order.status %>
+      <%= f.submit "購入を確定する", method: :post, class:"btn btn-primary active"%>
+      <!--orders_path, method: :post, class:"btn btn-success"-->
+    <% end %>
+  </div>
+</div>
+
+<!--form_with hidden_field　urlはクリエイトアクション動かすためのやつ-->
+<!--注文確定したらカートの商品削除したいよね-->
+<!--new.htmlで新登録住所を選んだ時その住所の登録とそれを選択して確定画面で表示-->
