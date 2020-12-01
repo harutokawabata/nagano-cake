@@ -1,60 +1,51 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <div class="box1">
-        <table class="table table-bordered">
-        	<thead>
-        		<tr>
-        			<th>ジャンル検索</th>
-        		</tr>
-        	</thead>
-        	<tbody>
-        		<tr>
-        			<th>each文で回す</th>
-        		</tr>
-        	</tbody>
+       <table class="table table-bordered">
+          <thead>
+          	<tr>
+          		<th>ジャンル検索</th>
+          	</tr>
+          </thead>
+          <tbody>
+          	<% @genres.each do |genre| %>
+          		<tr>
+          			 <td><%= genre.name %></td>
+          		</tr>
+          			<% end %>
+          	</tbody>
         </table>
       </div>
-    </div>
     <div class="col-md-9">
-      <div class="box2">
-        <p>ようこそ、NaganoCakeへ！<br>
-         このサイトは、ケーキ販売のECサイトになります。<br>
-         会員でない方も商品の閲覧はできますが,<br>
-         購入には会員登録が必要になります</p>
-      </div>
-      <h3>オススメ商品</h3>
-      <div class="container">
-          <div class="low">
-            <div class="col-md-2">
-              <div class="box3">
-                <p>img</p>
-              </div>
-              <p>ppp</p>
-            </div>
-            <div class="col-md-2">
-              <div class="box3">
-                <p>img</p>
-              </div>
-              <p>ppp</p>
-            </div>
-            <div class="col-md-2">
-              <div class="box3">
-                <p>img</p>
-              </div>
-              <p>ppp</p>
-            </div>
-            <div class="col-md-2">
-              <div class="box3">
-                <p>img</p>
-              </div>
-              <p>ppp</p>
-            </div>
-          </div>
+      <div class="toppage-box1">
+        <div class="toppage-box2">
+          <p>ようこそ、NaganoCakeへ！<br>
+           このサイトは、ケーキ販売のECサイトになります。<br>
+           会員でない方も商品の閲覧はできますが,<br>
+           購入には会員登録が必要になります</p>
         </div>
-        <p style="text-align:right;">もっと見る</p>
       </div>
+    <div class="col-md-9">
+      <h3>商品一覧</h3>
+      <p>全<%= @items.count %>件</p>
+      <div class="container-box">
+        <% @items.first(4).each do |item| %>
+          <div class="item-box">
+            <%# link_to attachment_image_tag(@book.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" ), user_path(@book.user) %>
+            <%= link_to(item_path(item)) do %>
+            <%= attachment_image_tag item, :image, format: 'jpeg', size: "160x90" %>
+            <% end %>
+            <br>
+            <p>商品名</p>
+            <%= number_to_currency(item.price, :unit => "￥") %>
+          </div>
+        <% end %>
+        <div style="text-align:right;">
+          <%= link_to 'もっとみる', items_path %>
+        </div>
+      </div>
+    </div>
+
     </div>
   </div>
-
 </div>

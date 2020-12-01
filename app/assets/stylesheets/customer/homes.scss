@@ -1,3 +1,43 @@
 // Place all the styles related to the customer::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.item-box{
+  display: inline-block;/*inline-blockにします*/
+  margin : 10px;
+  margin-bottom: 30px;
+}
+
+.container-box{
+  width: 740px;
+
+}
+
+.toppage-box1 {
+  width: 557px;
+  height: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+
+}
+
+.toppage-box2 {
+  width: 370px;
+  height: 135px
+  // background-color: pink;
+}
+
+.about-box{
+  width: 557px;
+  display: flex; /* Flexboxの利用 */
+  justify-content: center; /* 子要素の横並び・中央寄せ */
+  background-color: pink;
+  margin-left: 300px;
+}
+
+.about-box-child{
+text-align: left;
+height: 260px;
+}

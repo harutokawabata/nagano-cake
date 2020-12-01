@@ -9,6 +9,8 @@
       <p>ジャンル名</p>
     </div>
     <div class="col-xs-4">
+      
+      
       <%= form_with model:@genre, url:admin_genre_path(@genre.id), method: :patch, local:true do |f| %>
           <%= f.text_field :name %>
            <%= f.radio_button :is_active, :true %>
