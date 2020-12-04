@@ -4,18 +4,14 @@
       <h2><span>マイページ</span></h2>
     </div>
     <div class="col-mg-3">
-      <h2>登録情報（リンク未実装）</h2>
+      <h2>登録情報（リンク下だけ未実装）</h2>
     </div>
     <div class="col-mg-3">
-      <button type="button" id="sampleButtonSingleToggle" class="btn btn-primary" data-toggle="button" autocomplete="off">
-      	 <%= link_to '編集する', edit_admin_customer_path(@customer) %>
-      </button>
+      	 <%= link_to '編集する', edit_customer_registration_path(@customer), class:"btn btn-primary" %>
     </div>
     <br>
     <div class="col-mg-3">
-      <button type="button" id="sampleButtonSingleToggle" class="btn btn-primary" data-toggle="button" autocomplete="off">
-      	<%= link_to 'パスワードを設定する', customer_path(@customer) %>
-      </button>
+      	<%= link_to 'パスワードを変更する', edit_customer_password_path(@customer), class:"btn btn-primary" %>
     </div>
   </div>
   <br>
@@ -53,13 +49,11 @@
   </div>
   <div class="row">
     <div class="col-mg-2">
-      <h2>配送先（リンク未実装）</h2>
+      <h2>配送先</h2>
     </div>
     <div class="col-mg-2">
       <div class="actions">
-        <button type="button" id="sampleButtonSingleToggle" class="btn btn-primary" data-toggle="button" autocomplete="off">
-        	一覧を見る
-        </button>
+        <%= link_to '一覧を見る', addresses_path, class:"btn btn-primary" %>
       </div>
     </div>
   </div>
@@ -69,9 +63,10 @@
     </div>
     <div class="col-mg-2">
       <div class="actions">
-        <button type="button" id="sampleButtonSingleToggle" class="btn btn-primary" data-toggle="button" autocomplete="off">
-        	一覧を見る
-        </button>
+        <%= link_to '一覧を見る', orders_path, class:"btn btn-primary" %>
+        <!--<button type="button" id="sampleButtonSingleToggle" class="btn btn-primary" data-toggle="button" autocomplete="off">-->
+        <!--	一覧を見る-->
+        <!--</button>-->
       </div>
     </div>
   </div>
