@@ -1,0 +1,98 @@
+<div class="container">
+  <h2>注文履歴詳細</h2>
+  <div class="row">
+    <table class="table table-noborder">
+      <!--<thead>-->
+      <!--		<tr>-->
+      <!--			<th></th>-->
+      <!--			<th></th>-->
+      <!--			<th></th>-->
+      <!--			<th></th>-->
+      <!--		</tr>-->
+      <!--	</thead>-->
+      	<tbody>
+      		<tr>
+      			<th>購入者</th>
+      			<td><%= @order_detail.name %></td>
+      		</tr>
+      		<tr>
+      		  <th>配送先</th>
+      			<td>住所（未実装）</td>
+      		</tr>
+      		<tr>
+      		  <th>支払方法</th>
+      			<td>銀行振り込み（未実装）</td>
+      		</tr>
+      		<tr>
+      		  <th>注文ステータス</th>
+      			<td>入金待ち（未実装）</td>
+      		</tr>
+      	</tbody>
+      </table>
+  </div>
+  <div class="row">
+   <div class="col-xs-8">
+    <table class="table table-bordered">
+    	<thead>
+    	 <% sum1 = 0 %>
+    	 <% sum2 = 0 %>
+    		<tr>
+    			<th>商品名</th>
+    			<th>単価（税込）</th>
+    			<th>数量</th>
+    			<th>小計</th>
+    			<th>制作ステータス</th>
+    			<th></th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    	   <% @order_details.each do |order_detail| %>
+    		<tr>
+    			<th><%= order_detail.item.name %></th>
+    			<td><%= order_detail.item.price  * 1.1 %></td>
+    			<td><%= order_detail.amount %></td>
+    			<% sum1 = order_detail.item.price * 1.1 %>
+    			<% sum2 = order_detail.amount %>
+    			<td><%= sum1 * sum2 %></td>
+    			<td>
+   			  <%= form_with url:admin_order_detail_path(order_detail.id), method: :post, model:order_detail, local:true do |f| %>
+            <%= f.select :making_status, [["着手不可", "0"], ["入金待ち", "1"], ["入金確認", "2"], ["発想準備中", "3"], ["発送済み", "4"]], include_blank: "選択してください" %>
+            <%# f.hidden_field :item_id, :value => @item.id %>
+            <%= f.submit '更新', class:"btn btn-primary active" %>
+          <% end %>
+    			 <%# f.collection_select :order_detail_id, OrderDetail.all, :id, :making_status, include_blank: "選択して下さい" %><br>
+        <%# f.collection_select :保存先のカラム名(itemモデル）, これ以降genreモデルのデータ→テーブル（モデル）名.all, :実際にDBに保存させるカラム名(id), :選択肢に用いるカラム名(name), include_blank: "選択して下さい" %
+    			</td>
+    			<td>更新</td>
+    		</tr>
+    		<% end %>
+    		<% end %>
+    	</tbody>
+    </table>
+   </div>
+   <div class="col-xs-4">
+     <table class="table table-bordered">
+    	<!--<thead>-->
+    	<!--	<tr>-->
+    	<!--		<th></th>-->
+    	<!--		<th></th>-->
+    	<!--	</tr>-->
+    	<!--</thead>-->
+    	<tbody>
+    	  <tr>
+    			<td>商品合計</td>
+    			<td>金額表示</td>
+    		</tr>
+    	  <tr>
+    			<td>送料</td>
+    			<td>送料表示</td>
+    		</tr>
+    	  <tr>
+    			<td>請求金額合計</td>
+    			<td>金</td>
+    		</tr>
+    	</tbody>
+     </table>
+   </div>
+  </div>
+</div>

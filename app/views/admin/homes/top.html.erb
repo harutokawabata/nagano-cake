@@ -13,7 +13,16 @@
       <h2>本日の注文数</h2>
     </div>
     <div class="col-xs-6">
-      <h2>（未）件</h2>
+      <% sum = 0 %>
+        <% @order_details.each do |order_detail| %>
+          <%# if order_detail.created_at == today %>
+            <% order_detail.amount %>
+            <% sum += order_detail.amount %>
+          <%# else %>
+            <%#= sum %>
+          <%# end %>
+        <% end %>
+     <h2><%= sum %>件</h2>
     </div>
   </div>
 </div>

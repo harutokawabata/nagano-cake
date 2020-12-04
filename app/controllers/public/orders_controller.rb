@@ -32,8 +32,17 @@ class Public::OrdersController < ApplicationController
     # @cart_item = Item.find(params[:item_id])
     @order = Order.new(order_params)
     @order.save
-    # @order_detail
-    # @order_detail.save
+    cart_items = current_customer.cart_items
+    order_detail = OrderDetail.new
+    cart_items.each do |cart_item|
+      order_detail.order_id = @order.id #親の@orderの
+      order_detail.item_id = cart_item.item.id
+      order_detail.price = cart_item.item.price
+      order_detail.amount = cart_item.amount
+      # order_detail.making_status = @order.id
+      order_detail.save
+    end
+    cart_items.delete_all
     redirect_to orders_complete_path
   end
 
