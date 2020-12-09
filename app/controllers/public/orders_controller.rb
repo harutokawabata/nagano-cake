@@ -10,6 +10,8 @@ class Public::OrdersController < ApplicationController
    @items = Item.all
    @cart_items = current_customer.cart_items
    @order = Order.new(order_params)
+   @order.shipping_cost = 800
+   @order.status = 0
    if params[:order][:address_id] == "0" #ご自身の住所を選んだ時（ストロングパラメーターで送られた値は文字列になってしまうため)
     @order.name = current_customer.first_name + current_customer.last_name
     @order.postal_code = current_customer.postal_code
@@ -33,8 +35,8 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.save
     cart_items = current_customer.cart_items
-    order_detail = OrderDetail.new
     cart_items.each do |cart_item|
+      order_detail = OrderDetail.new
       order_detail.order_id = @order.id #親の@orderの
       order_detail.item_id = cart_item.item.id
       order_detail.price = cart_item.item.price
@@ -47,9 +49,15 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
+    # @order_details = current_customer.order_details
+    # @order_details = OrderDetail.all
+    # 上の表記はhas_manyとbelongs_toを設定しているから成り立つ
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private

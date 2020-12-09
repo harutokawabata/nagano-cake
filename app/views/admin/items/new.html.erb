@@ -4,6 +4,7 @@
   </div>
   <div class="row">
     <%= form_with url:admin_items_path, method: :post, model:@item, local:true do |f| %>
+    <!--urlの指定はクリエイトアクションに飛ばすための記載-->
       <div class="col-xs-4">
         <p>プレビュー機能</p>
         <%# attachment_image_tag @item, :image, fallback: "no-image.png", id: "img_p", style: "height: 250px; width:300px;" %><br>

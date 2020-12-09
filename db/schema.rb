@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_122112) do
+ActiveRecord::Schema.define(version: 2020_12_08_233606) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_122112) do
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_122112) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_122112) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 2020_12_03_122112) do
     t.string "name"
     t.integer "shipping_cost"
     t.integer "total_payment"
-    t.integer "payment_method"
-    t.integer "status"
+    t.integer "payment_method", default: 0
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
