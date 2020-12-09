@@ -8,16 +8,23 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    new_customer_session_path
+    # byebug
+    case resource
+    when :admin
+      new_admin_session_path
+    when :customer
+      new_customer_session_path
+    end
   end
 
   def after_sign_in_path_for(resource)
     case resource
     when Admin
       admin_path
+    when Customer
+      root_path
     end
   end
-
 end
 
     # t.string "last_name"

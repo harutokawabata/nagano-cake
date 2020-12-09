@@ -1,0 +1,12 @@
+ja:
+  enums:
+    order:
+      status:
+        waiting: "入金待ち"
+        unstart: "着手不可"
+        confirm: "入金確認"
+        perparation: "発送準備中"
+        finish: '発送済み'
+      payment_method:
+        card: 'クレジットカード'
+        bank: '銀行振り込み'

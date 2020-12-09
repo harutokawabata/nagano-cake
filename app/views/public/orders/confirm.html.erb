@@ -33,7 +33,7 @@
     <table class="table table-bordered">
       <tr><th>送料</th><td>800円</td></tr>
       <tr><th>商品合計</th><td><%= sum %></td></tr>
-      <tr><th>請求額</th><td><%# sum + 800  %></td></tr>
+      <tr><th>請求額</th><td><%= sum + 800  %></td></tr>
       <!--https://techacademy.jp/magazine/34474-->
     </table>
    </div>
@@ -41,13 +41,14 @@
   <div class="row">
     <div class="col-xs-3">
       <h3>支払い方法</h3>
-      <%= @order.payment_method %>
+      <%= @order.payment_method_i18n %>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-3">
+      <div><% address_info = @order.postal_code + @order.address + @order.name %></div>
       <h3>お届け先</h3>
-      <%= @order.postal_code %> <%= @order.address %>  <%= @order.name %>
+      <%= address_info %>
     </div>
   </div>
   <div class="row" style="text-align:center;">
@@ -57,7 +58,7 @@
       <%= f.hidden_field :address, :value => @order.address %>
       <%= f.hidden_field :name, :value => @order.name %>
       <%= f.hidden_field :shipping_cost, :value => @order.shipping_cost %>
-      <%= f.hidden_field :total_payment, :value => @order.total_payment %>
+      <%= f.hidden_field :total_payment, :value => sum + 800 %>
       <%= f.hidden_field :payment_method, :value => @order.payment_method %>
       <%= f.hidden_field :status, :value => @order.status %>
       <%= f.submit "購入を確定する", method: :post, class:"btn btn-primary active"%>

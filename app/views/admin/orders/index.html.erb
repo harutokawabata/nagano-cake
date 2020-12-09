@@ -15,38 +15,13 @@
     	<tbody>
     	  <% @order_details.each do |order_detail| %>
     		<tr>
-    			<th><%= order_detail.created_at %></th>
+    			<th><%=link_to order_detail.created_at, admin_order_path(order_detail.id) %></th>
     			<td><%= order_detail.item.name %></td>
     			<td><%= order_detail.amount %></td>
-    			<td>
-    			  <%= form_with url:admin_order_detail_path(order_detail.id), method: :post, model:order_detail, local:true do |f| %>
-                    <%= f.select :making_status, [["着手不可", "0"], ["入金待ち", "1"], ["入金確認", "2"], ["発想準備中", "3"], ["発送済み", "4"]], include_blank: "選択してください" %>
-                    <%# f.hidden_field :item_id, :value => @item.id %>
-                    <%= f.submit '更新', class:"btn btn-primary active" %>
-                  <% end %>
-    			  <%# if cart_items.order_detail.making_status== 0 %>
-    			    <!--<P>入金待ち</P>-->
-    			  <%# elsif cart_items.order_detail.making_status== 1 %>
-    			    <!--<p>入金確定</p>-->
-    			  <%# elsif cart_items.order_detail.making_status== 2 %>
-    			    <!--<p>発送準備中</p>-->
-    			  <%# elsif cart_items.order_detail.making_status== 3 %>
-    			    <!--<p>発送済み</p>-->
-    			  <%# end %>
-    			</td>
+    			<td><%= order_detail.order.status_i18n %></td>
     		</tr>
     		<% end %>
     	</tbody>
     </table>
   </div>
 </div>
-     <div class="col-xs-4">
-        <%= form_with model:@order_detail, url:admin_orders_path, local:true do |f| %>
-          <%= f.text_field :making_status %>
-           <%= f.radio_button :is_active, :true %>
-           <%= f.label :is_active, "有効", {value: :true, style: "display: inline-block;"} %>
-           <%= f.radio_button :is_active, :false %>
-           <%= f.label :is_active, "無効", {value: :false, style: "display: inline-block;"} %>
-          <%= f.submit "変更を保存" %>
-        <% end %>
-      </div>

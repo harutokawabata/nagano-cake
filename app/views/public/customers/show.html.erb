@@ -4,14 +4,14 @@
       <h2><span>マイページ</span></h2>
     </div>
     <div class="col-mg-3">
-      <h2>登録情報（リンク下だけ未実装）</h2>
+      <h2>登録情報(パスワードを変更する未実装）</h2>
     </div>
     <div class="col-mg-3">
-      	 <%= link_to '編集する', edit_customer_registration_path(@customer), class:"btn btn-primary" %>
+      	 <%= link_to '編集する', edit_customers_path, class:"btn btn-primary" %>
     </div>
     <br>
     <div class="col-mg-3">
-      	<%= link_to 'パスワードを変更する', edit_customer_password_path(@customer), class:"btn btn-primary" %>
+      	<%= link_to 'パスワードを変更する', edit_customer_password_path, class:"btn btn-primary" %>
     </div>
   </div>
   <br>
@@ -59,7 +59,7 @@
   </div>
   <div class="row">
     <div class="col-mg-2">
-      <h2>注文履歴（リンク未実装）</h2>
+      <h2>注文履歴</h2>
     </div>
     <div class="col-mg-2">
       <div class="actions">

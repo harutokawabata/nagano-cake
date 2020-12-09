@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
+  # root to: 'public/homes#top'
   # ここから（devise_forとルーティングがかぶるから別に記載)
   # get '/customers/:id/edit' => 'public/customers#edit'
-  patch '/customers/:id/update' => 'public/customers#update', as:'update_customer'
+  # patch '/customers/:id/update' => 'public/customers#update', as: 'update_customer'(いらん)
   # ここまで
-  devise_for :customers, controllers: {
-    sessions: 'customers/sessions',
-    passwords: 'customers/passwords',
-    registrations: 'customers/registrations'
-  }
+
 
 # コントローラ〜削除時にエラ〜の場合は否の文を消す
   devise_for :admin, controllers: {
@@ -18,7 +15,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
     # get '/customers/:id/edit' => 'customers#edit', as: 'edit_customer'
-    resources :customers, only: [:edit, :show, :unsubscrib, :withdraw, :update]
+    resource :customers, only: [:edit, :show, :update]
+    get '/customers/unsubscribe' => 'customers#unsubscribe'
+    get '/customers/withdraw' => 'customers#withdraw'
+    # withdraw
+
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
     #ここからcart_items
@@ -44,10 +45,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #homesコントローラーを利用してルートパス を設置
-  get '/' => 'public/homes#top'
   get '/admin' => 'admin/homes#top'
   get '/about' => 'public/homes#about'
-
-  get '/customers/my_page' => 'publics/customers#show', as: 'customers'
+  # get '/' => 'public/homes#top'
+  root 'public/homes#top'
+  # get '/customers/my_page' => 'publics/customers#show', as: 'customers'
+    devise_for :customers, controllers: {
+    sessions: 'customers/sessions',
+    passwords: 'customers/passwords',
+    registrations: 'customers/registrations'
+  }
 
 end

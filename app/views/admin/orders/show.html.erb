@@ -13,19 +13,26 @@
       	<tbody>
       		<tr>
       			<th>購入者</th>
-      			<td><%= @order_detail.name %></td>
+      			<td><%= @order.name %></td>
       		</tr>
       		<tr>
       		  <th>配送先</th>
-      			<td>住所（未実装）</td>
+      			<td><%= @order.address %></td>
       		</tr>
       		<tr>
       		  <th>支払方法</th>
-      			<td>銀行振り込み（未実装）</td>
+      			<td><%= @order.payment_method_i18n %></td>
       		</tr>
       		<tr>
       		  <th>注文ステータス</th>
-      			<td>入金待ち（未実装）</td>
+      			<td>
+      			  <%= form_with url:admin_order_path(@order.id), method: :patch, model:@order, local:true do |f| %>
+      			    <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+                <!--<%# f.select :status, [["着手不可", 0], ["入金待ち", 1], ["入金確認", 2], ["発想準備中", 3], ["発送済み", 4]], include_blank: "選択してください" %>-->
+                <%# f.hidden_field :item_id, :value => @item.id %>
+                <%= f.submit '更新', class:"btn btn-primary active" %>
+              <% end %>
+      			</td>
       		</tr>
       	</tbody>
       </table>
@@ -56,7 +63,7 @@
     			<td><%= sum1 * sum2 %></td>
     			<td>
    			  <%= form_with url:admin_order_detail_path(order_detail.id), method: :post, model:order_detail, local:true do |f| %>
-            <%= f.select :making_status, [["着手不可", "0"], ["入金待ち", "1"], ["入金確認", "2"], ["発想準備中", "3"], ["発送済み", "4"]], include_blank: "選択してください" %>
+            <%= f.select :making_status, [["着手不可", "0"], ["入金待ち", "1"], ["入金確認", "2"], ["発送準備中", "3"], ["発送済み", "4"]], include_blank: "選択してください" %>
             <%# f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit '更新', class:"btn btn-primary active" %>
           <% end %>

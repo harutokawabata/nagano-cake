@@ -24,25 +24,26 @@ class Admin::OrdersController < ApplicationController
 
   def show
     # @order_details = @order.order_details
-    @order = Order.new(order_params)
-    @order_details = OrderDetail.all
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
+    # @order_detail = @order.order_detail
       # @cart_items = current_customer.cart_items
-    @order_detail = OrderDetail.new
 
       # 確認画面の内容（商品の一覧）＝ユーザーが購入する商品
-      # 確認画面に表示されている商品　＝　ユーザーがカートに入れている商品
-      # ユーザーは買いたい商品はカートに入っている商品　⇨　購入することでorder_detailにも登録されるように
+      # 確認画面に表示されている商品＝ユーザーがカートに入れている商品
+      # ユーザーは買いたい商品はカートに入っている商品⇨購入することでorder_detailにも登録されるように
       # cartの中身を見れば何を購入したいかがわかる
   end
 
   def update
-    @order_details = OrderDetail.all
-    @order.save
+    @order = Order.find(params[:id])
+    @order.update(status: params[:order][:status])
+    redirect_back(fallback_location: admin_orders_path)
   end
 
   private
   def order_params
-    params.permit(:payment_method, :customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment,  :status)
+    params.require(:order).permit(:payment_method, :customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :status)
     # (:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment,  :status)
   end
 

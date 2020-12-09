@@ -3,6 +3,9 @@ class Admin::CustomersController < ApplicationController
 
   def index
     @customers = Customer.all
+    # @customer = Customer.find(params[:id])
+    # @customer = Customer.with_deleted.find(@item.customer_id)
+    # itemの作成者
   end
 
   def create
@@ -17,6 +20,9 @@ class Admin::CustomersController < ApplicationController
   end
 
   def update
+    @customer = Customer.find(params[:id])
+    @customer.update(customer_params)
+    redirect_to admin_customers_path
   end
 
   def unsubscrib

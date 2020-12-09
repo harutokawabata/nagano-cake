@@ -12,9 +12,9 @@
          <%= form_with model:@order, url:orders_confirm_path, local:true do |f| %>
          <div class="row">
           <h4>支払い方法</h4>
-           <%= f.radio_button :payment_method, 0 %>
+           <%= f.radio_button :payment_method, "card" %>
            <%= f.label :ipayment_method, "クレジットカード", {value: :true, style: "display: inline-block;"} %><br>
-           <%= f.radio_button :payment_method, 1 %>
+           <%= f.radio_button :payment_method, "bank" %>
            <%= f.label :payment_method, "銀行振り込み", {value: :false, style: "display: inline-block;"} %><br>
          </div>
          <div class="row">

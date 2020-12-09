@@ -8,8 +8,12 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
-    @genre.save
-    redirect_to admin_genres_path
+    if @genre.save
+      redirect_to admin_genres_path
+    else
+      flash[:notice] = 'error'
+      redirect_to admin_genres_path
+    end
   end
 
   def edit
@@ -21,7 +25,7 @@ class Admin::GenresController < ApplicationController
     if @genre.update(genre_params)
       redirect_to admin_genres_path
     else
-      flash[:natice] = 'error'
+      flash[:notice] = 'error'
     end
   end
 
