@@ -27,7 +27,7 @@
             <%= attachment_image_tag item, :image, format: 'jpeg', size: "160x90" %>
             <% end %>
             <br>
-            <p>商品名</p>
+            <%= item.name %>
             <%= number_to_currency(item.price, :unit => "￥") %>
           </div>
         <% end %>

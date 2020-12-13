@@ -5,6 +5,7 @@ class Admin::OrdersController < ApplicationController
     # @order = Order.new(order_params)
     # @order.save
     @order_details = OrderDetail.all
+    @orders = Order.all
     # @cart_items = current_customer.cart_items
     # @order_detail = OrderDetail.new
     # @cart_items.each do |cart_item|
@@ -26,6 +27,7 @@ class Admin::OrdersController < ApplicationController
     # @order_details = @order.order_details
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    # @order_detail= Order.order_detail.making_status
     # @order_detail = @order.order_detail
       # @cart_items = current_customer.cart_items
 
@@ -37,8 +39,21 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(status: params[:order][:status])
-    redirect_back(fallback_location: admin_orders_path)
+    @order_details = @order.order_details
+    # @order.update(status: params[:order][:status])
+    # [:order]を取り除いた記載にした
+    # @order.update!(order_params)
+    # @order_detail = @order.order_detail.making_status
+      @order.update(status: params[:order][:status])
+      if @order.status == "confirm"
+        @order_details.each do |order_detail|
+          # order_detail.find(params[:id])
+           order_detail.update(making_status: "waiting")
+        end
+      end
+      # @order_detail.update_attributes(making_status: "waiting")
+    # redirect_back(fallback_location: admin_orders_path)
+    redirect_to admin_order_path(@order.id)
   end
 
   private

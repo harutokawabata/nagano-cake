@@ -21,13 +21,20 @@ class Public::CustomersController < ApplicationController
 
   def withdraw
     customer = current_customer
-    customer.destroy
+    customer.update(is_deleted: true)
+    # redirect_to controller: 'customers/sessions', action: 'destroy'
+    # @user = User.find(params[:id])
+    # #is_deletedカラムにフラグを立てる(defaultはfalse)
+    # @user.update(is_deleted: true)
+     #ログアウトさせる
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
 
     private
     def customer_params
-      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted, :unsubscribe
+      params.require(:customer).permit(:email, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :is_deleted, :unsubscribe
       )
     end
 

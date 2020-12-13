@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     # get '/customers/:id/edit' => 'customers#edit', as: 'edit_customer'
     resource :customers, only: [:edit, :show, :update]
     get '/customers/unsubscribe' => 'customers#unsubscribe'
-    get '/customers/withdraw' => 'customers#withdraw'
+    put '/customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
+    # put "/users/:id/hide" => "users#hide", as: 'users_hide'
     # withdraw
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]

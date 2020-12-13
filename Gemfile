@@ -68,5 +68,4 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'rails-i18n'
 gem 'enum_help'
-gem 'paranoia'
 gem 'pry-byebug'
