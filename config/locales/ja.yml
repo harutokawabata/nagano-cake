@@ -5,8 +5,15 @@ ja:
         waiting: "入金待ち"
         unstart: "着手不可"
         confirm: "入金確認"
+        making: "制作中"
         perparation: "発送準備中"
         finish: '発送済み'
       payment_method:
         card: 'クレジットカード'
         bank: '銀行振り込み'
+    order_detail:
+      making_status:
+        cannnot: '制作不可'
+        waiting: '制作待ち'
+        making: '制作中'
+        finish: '制作完了'

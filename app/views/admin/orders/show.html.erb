@@ -26,12 +26,12 @@
       		<tr>
       		  <th>注文ステータス</th>
       			<td>
-      			  <%= form_with url:admin_order_path(@order.id), method: :patch, model:@order, local:true do |f| %>
-      			    <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+      		          <%= form_with url:admin_order_path(@order.id), method: :patch, model:@order, local:true do |f| %>
+      			        <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
                 <!--<%# f.select :status, [["着手不可", 0], ["入金待ち", 1], ["入金確認", 2], ["発想準備中", 3], ["発送済み", 4]], include_blank: "選択してください" %>-->
                 <%# f.hidden_field :item_id, :value => @item.id %>
-                <%= f.submit '更新', class:"btn btn-primary active" %>
-              <% end %>
+                        <%= f.submit '更新', class:"btn btn-primary active" %>
+                    <% end %>
       			</td>
       		</tr>
       	</tbody>
@@ -49,10 +49,10 @@
     			<th>数量</th>
     			<th>小計</th>
     			<th>制作ステータス</th>
-    			<th></th>
     		</tr>
     	</thead>
     	<tbody>
+    	   <% sumX = 0 %>
     	   <% @order_details.each do |order_detail| %>
     		<tr>
     			<th><%= order_detail.item.name %></th>
@@ -61,12 +61,16 @@
     			<% sum1 = order_detail.item.price * 1.1 %>
     			<% sum2 = order_detail.amount %>
     			<td><%= sum1 * sum2 %></td>
+    			<% sumX += sum1 * sum2 %>
     			<td>
-   			  <%= form_with url:admin_order_detail_path(order_detail.id), method: :post, model:order_detail, local:true do |f| %>
-            <%= f.select :making_status, [["着手不可", "0"], ["入金待ち", "1"], ["入金確認", "2"], ["発送準備中", "3"], ["発送済み", "4"]], include_blank: "選択してください" %>
+   			  <%= form_with url:admin_order_detail_path(order_detail.id), method: :patch, model:order_detail, local:true do |f| %>
+            <%= f.select :making_status, [["制作不可", "cannnot"], ["制作待ち", "waiting"], ["制作中", "making"], ["制作完了", "finish"]] %>
             <%# f.hidden_field :item_id, :value => @item.id %>
+            <!--enumで管理（0：制作不可、1：制作待ち、2：制作中、3：制作完了）making_status-->
+
             <%= f.submit '更新', class:"btn btn-primary active" %>
           <% end %>
+          </td>
     			 <%# f.collection_select :order_detail_id, OrderDetail.all, :id, :making_status, include_blank: "選択して下さい" %><br>
         <%# f.collection_select :保存先のカラム名(itemモデル）, これ以降genreモデルのデータ→テーブル（モデル）名.all, :実際にDBに保存させるカラム名(id), :選択肢に用いるカラム名(name), include_blank: "選択して下さい" %
     			</td>
@@ -88,15 +92,17 @@
     	<tbody>
     	  <tr>
     			<td>商品合計</td>
-    			<td>金額表示</td>
+    			<% sum3 = @order.shipping_cost %>
+    			<% sum4 = @order.total_payment %>
+    			<td><%= sumX  %></td>
     		</tr>
     	  <tr>
     			<td>送料</td>
-    			<td>送料表示</td>
+    			<td><%= sum3 %></td>
     		</tr>
     	  <tr>
     			<td>請求金額合計</td>
-    			<td>金</td>
+    			<td><%= sumX + sum3 %></td>
     		</tr>
     	</tbody>
      </table>
